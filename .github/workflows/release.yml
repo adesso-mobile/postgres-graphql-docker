@@ -13,7 +13,7 @@ env:
 
 
 jobs:
-  build-and-push-bookworm-pg16:
+  build-and-push:
     strategy:
         matrix:
             version: [14,15,16]
