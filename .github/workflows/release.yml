@@ -21,22 +21,19 @@ jobs:
       packages: write
 
     steps:
-      - id: v_pg_graphql
-        name: Get Latest PG_GraphQL Versionnumber
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          repository: supabase/pg_graphql
-      - run: echo "${{ steps.v_pg_graphql.outputs.release }}"
-        shell: bash
-        name: Log PG_GraphQL Versionnumber
-
       - name: Prepare docker
         id: prep
         run: |
+          
+          PG_GRAPHQL_VERSION=$(curl --silent https://api.github.com/repos/supabase/pg_graphql/releases/latest | jq .tag_name --raw-output)
           GHCR_IMAGE=ghcr.io/${{ github.repository }}
           
           echo name=GHCR_IMAGE::$GHCR_IMAGE >> $GITHUB_OUTPUT
+          echo name=PG_GRAPHQL_VERSION::$PG_GRAPHQL_VERSION >> $GITHUB_OUTPUT
           
+      - run: echo "${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}"
+        shell: bash
+        name: Log PG_GraphQL Versionnumber
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,9 +45,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
+          build-args: |
+            PG_GRAPHQL_VERSION=${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
           context: ./postgres/bookworm/pg16
           push: true
           tags: ${{ steps.prep.outputs.GCHR_IMAGE }}:bookworm-pg16-${{ steps.v_pg_graphql.outputs.release }}
+
