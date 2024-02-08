@@ -13,7 +13,7 @@ env:
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
-  build-and-push-image:
+  build-and-push-bookworm-pg16:
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
@@ -50,5 +50,5 @@ jobs:
         with:
           context: ./postgres/bookworm/pg16
           push: true
-          tags: postgres-graphql-docker:bookworm-pg16-${{v_pg_graphql.outputs.latest_release}}
+          tags: postgres-graphql-docker:bookworm-pg16-${{stems.meta.v_pg_graphql.outputs.latest_release}}
           labels: ${{ steps.meta.outputs.labels }}
