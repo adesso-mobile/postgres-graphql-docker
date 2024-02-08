@@ -45,4 +45,4 @@ jobs:
         with:
           context: ./postgres/bookworm/pg16
           push: true
-          tags: latest, bookworm-pg16-${{ steps.meta.v_pg_graphql.outputs.release }}
+          tags: latest, bookworm-pg16-${{ steps.v_pg_graphql.outputs.release }}
