@@ -22,6 +22,7 @@ jobs:
       #
     steps:
       - id: v_pg_graphql
+        name: Get Latest PG_GraphQL Versionnumber
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: supabase/pg_graphql
