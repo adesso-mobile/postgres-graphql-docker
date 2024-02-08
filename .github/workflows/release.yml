@@ -50,5 +50,5 @@ jobs:
         with:
           context: ./postgres/bookworm/pg16
           push: true
-          tags: postgres-graphql-docker:bookworm-pg16-${{stems.meta.v_pg_graphql.outputs.latest_release}}
+          tags: postgres-graphql-docker:bookworm-pg16-${{steps.meta.v_pg_graphql.outputs.latest_release}}
           labels: ${{ steps.meta.outputs.labels }}
