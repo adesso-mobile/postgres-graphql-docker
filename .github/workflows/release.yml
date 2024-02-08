@@ -42,4 +42,4 @@ jobs:
         with:
           context: ./postgres/bookworm/pg16
           push: true
-          tags: adesso-mobile/postgres-graphql-docker:bookworm-pg16-${{steps.meta.v_pg_graphql.outputs.release}}
+          tags: latest, bookworm-pg16-${{ steps.meta.v_pg_graphql.outputs.release }}
