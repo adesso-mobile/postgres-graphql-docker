@@ -28,6 +28,9 @@ jobs:
           PG_GRAPHQL_VERSION=$(curl --silent https://api.github.com/repos/supabase/pg_graphql/releases/latest | jq .tag_name --raw-output)
           GHCR_IMAGE=ghcr.io/${{ github.repository }}
           
+          echo $GHCR_IMAGE
+          echo $PG_GRAPHQL_VERSION
+          
           echo name=GHCR_IMAGE::$GHCR_IMAGE >> $GITHUB_OUTPUT
           echo name=PG_GRAPHQL_VERSION::$PG_GRAPHQL_VERSION >> $GITHUB_OUTPUT
           
