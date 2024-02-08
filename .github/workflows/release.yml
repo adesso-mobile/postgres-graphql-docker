@@ -26,6 +26,9 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: supabase/pg_graphql
+      - run: echo "${{ steps.v_pg_graphql.outputs.release }}"
+        shell: bash
+        name: Log PG_GraphQL Versionnumber
 
       - name: Checkout repository
         uses: actions/checkout@v4
