@@ -52,12 +52,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
 
-      - name: pg${{ matrix.version}} Build and push Docker image
+      - name: ${{ matrix.version}} Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           build-args: |
             PG_GRAPHQL_VERSION=${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
-          context: ./postgres/bookworm/${{ matrix.version}}
+          context: ./postgres/bookworm/pg${{ matrix.version}}
           push: true
           tags: ${{ steps.prep.outputs.GHCR_IMAGE }}:bookworm-pg${{ matrix.version}}-${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
 
