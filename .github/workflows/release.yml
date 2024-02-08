@@ -31,8 +31,8 @@ jobs:
           echo $GHCR_IMAGE
           echo $PG_GRAPHQL_VERSION
           
-          echo GHCR_IMAGE::$GHCR_IMAGE >> $GITHUB_OUTPUT
-          echo PG_GRAPHQL_VERSION::$PG_GRAPHQL_VERSION >> $GITHUB_OUTPUT
+          echo GHCR_IMAGE=$GHCR_IMAGE >> $GITHUB_OUTPUT
+          echo PG_GRAPHQL_VERSION=$PG_GRAPHQL_VERSION >> $GITHUB_OUTPUT
           
       - run: echo "${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}"
         shell: bash
