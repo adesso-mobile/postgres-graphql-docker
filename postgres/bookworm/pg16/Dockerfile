@@ -1,5 +1,5 @@
 FROM postgres:16-bookworm
-ENV PG_GRAPHQL_VERSION=v1.4.4
+ENV PG_GRAPHQL_VERSION=v0.0.0
 
 RUN apt update && apt install jq curl dpkg -y
 

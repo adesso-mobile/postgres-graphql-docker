@@ -56,5 +56,5 @@ jobs:
             PG_GRAPHQL_VERSION=${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
           context: ./postgres/bookworm/pg16
           push: true
-          tags: ${{ steps.prep.outputs.GCHR_IMAGE }}:bookworm-pg16-${{ steps.v_pg_graphql.outputs.release }}
+          tags: ${{ steps.prep.outputs.GCHR_IMAGE }}:bookworm-pg16-${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
 
