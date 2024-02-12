@@ -63,3 +63,13 @@ jobs:
           push: true
           tags: ${{ steps.prep.outputs.GHCR_IMAGE }}:bookworm-pg${{ matrix.version}}-${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
 
+
+      - name: Remove untagged container images
+        uses: actions/delete-package-versions@v4.1.1
+        with:
+          package-name: ${{ steps.prep.outputs.GHCR_IMAGE }}
+          package-type: 'container'
+          delete-only-untagged-versions: 'true'
+          min-versions-to-keep: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
