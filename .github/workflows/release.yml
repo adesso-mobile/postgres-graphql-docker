@@ -62,7 +62,7 @@ jobs:
             PG_GRAPHQL_VERSION=${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
           context: ./postgres/bookworm/pg${{ matrix.version}}
           push: true
-          tags: ${{ steps.prep.outputs.GHCR_IMAGE }}-bookworm-pg${{ matrix.version}}:${{ steps.prep.outputs.PG_GRAPHQL_SEMVER }}
+          tags: ${{ steps.prep.outputs.GHCR_IMAGE }}-bookworm-pg${{ matrix.version}}:${{ steps.prep.outputs.PG_GRAPHQL_SEMVER }}, ${{ steps.prep.outputs.GHCR_IMAGE }}-bookworm-pg${{ matrix.version}}:latest
 
 
   cleanup:
