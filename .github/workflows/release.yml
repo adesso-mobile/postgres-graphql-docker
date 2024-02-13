@@ -31,6 +31,7 @@ jobs:
         run: |
           
           PG_GRAPHQL_VERSION=$(curl --silent https://api.github.com/repos/supabase/pg_graphql/releases/latest | jq .tag_name --raw-output)
+          PG_GRAPHQL_SEMVER=$(echo $PG_GRAPHQL_VERSION | sed 's/v//')
           GHCR_IMAGE=ghcr.io/${{ github.repository }}
           
           echo $GHCR_IMAGE
@@ -61,7 +62,7 @@ jobs:
             PG_GRAPHQL_VERSION=${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
           context: ./postgres/bookworm/pg${{ matrix.version}}
           push: true
-          tags: ${{ steps.prep.outputs.GHCR_IMAGE }}:bookworm-pg${{ matrix.version}}-${{ steps.prep.outputs.PG_GRAPHQL_VERSION }}
+          tags: ${{ steps.prep.outputs.GHCR_IMAGE }}-bookworm-pg${{ matrix.version}}:${{ steps.prep.outputs.PG_GRAPHQL_SEMVER }}
 
 
   cleanup:
