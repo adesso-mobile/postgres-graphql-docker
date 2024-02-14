@@ -68,7 +68,7 @@ jobs:
       - name: Remove untagged container images
         uses: actions/delete-package-versions@v4.1.1
         with:
-          package-name: 'postgres-graphql-docker-bookwork-pg${{ matrix.version}}'
+          package-name: 'postgres-graphql-docker-bookworm-pg${{ matrix.version}}'
           package-type: 'container'
           delete-only-untagged-versions: 'true'
           min-versions-to-keep: 0
